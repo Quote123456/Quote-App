@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b5f56">
+  <title>Home Energy Save GB Quote App</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">HOME ENERGY SAVE GB LTD</p>
+      <h1>Live Quote Builder</h1>
+    </div>
+    <button id="newQuoteBtn" class="ghost">New</button>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Customer</h2>
+      <div class="grid">
+        <label>Customer name<input id="customerName" autocomplete="name"></label>
+        <label>Phone<input id="phone" type="tel" autocomplete="tel"></label>
+        <label>Email<input id="email" type="email" autocomplete="email"></label>
+        <label>Surveyor<input id="surveyor"></label>
+      </div>
+      <label>Address<textarea id="address" rows="2" autocomplete="street-address"></textarea></label>
+    </section>
+
+    <section class="card">
+      <div class="section-row">
+        <h2>Services</h2>
+        <button id="addLineBtn">+ Add service</button>
+      </div>
+      <div id="lineItems" class="line-items"></div>
+    </section>
+
+    <section class="card">
+      <h2>Discount & VAT</h2>
+      <div class="grid two">
+        <label>Discount %<input id="discountPct" type="number" min="0" max="100" step="0.1" value="0"></label>
+        <label>VAT rate %<input id="vatPct" type="number" min="0" max="100" step="0.1" value="20"></label>
+      </div>
+      <p class="muted">Discount is not applied to items marked as non-discountable.</p>
+    </section>
+
+    <section class="quote-panel">
+      <div class="quote-top">
+        <div>
+          <p class="eyebrow">Quote ref</p>
+          <h2 id="quoteRef"></h2>
+        </div>
+        <div class="total">
+          <span>Total inc VAT</span>
+          <strong id="totalIncVat">£0</strong>
+        </div>
+      </div>
+
+      <div class="totals">
+        <div><span>Discountable subtotal</span><strong id="discountableSubtotal">£0</strong></div>
+        <div><span>Non-discountable subtotal</span><strong id="nonDiscountableSubtotal">£0</strong></div>
+        <div><span>Minimum-charge uplift</span><strong id="minUplift">£0</strong></div>
+        <div><span>Discount value</span><strong id="discountValue">£0</strong></div>
+        <div><span>Net after discount</span><strong id="netAfterDiscount">£0</strong></div>
+        <div><span>VAT</span><strong id="vatValue">£0</strong></div>
+      </div>
+
+      <div id="flags" class="flags"></div>
+
+      <div class="actions">
+        <button id="shareBtn">Send / Share quote</button>
+        <button id="emailBtn" class="secondary">Email quote</button>
+        <button id="printBtn" class="secondary">Print / PDF</button>
+      </div>
+    </section>
+
+    <section class="card print-quote" id="printQuote">
+      <h2>Customer Quote</h2>
+      <div id="quoteText"></div>
+    </section>
+  </main>
+
+  <template id="lineTemplate">
+    <article class="line-card">
+      <div class="line-head">
+        <strong class="line-title">Service</strong>
+        <button class="remove" aria-label="Remove service">×</button>
+      </div>
+      <label>Service<select class="service"></select></label>
+      <label>Room / notes<input class="notes" placeholder="e.g. lounge, hallway"></label>
+      <div class="grid two">
+        <label>Qty<input class="qty" type="number" min="0" step="0.01" value="1"></label>
+        <label>Override rate £<input class="override" type="number" min="0" step="0.01" placeholder="optional"></label>
+      </div>
+      <div class="line-meta">
+        <span class="unit"></span>
+        <span class="rate"></span>
+        <strong class="line-total"></strong>
+      </div>
+      <p class="line-note"></p>
+    </article>
+  </template>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
